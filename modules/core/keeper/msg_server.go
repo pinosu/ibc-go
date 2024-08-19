@@ -493,10 +493,11 @@ func (k *Keeper) RecvPacket(goCtx context.Context, msg *channeltypes.MsgRecvPack
 			// store the recv results until all applications are completed
 			k.ChannelKeeper.StoreRecvResults(ctx, msg.Packet.GetDestPort(), msg.Packet.GetDestChannel(), msg.Packet.GetSequence(), results)
 		} else {
+			legacyCbs := legacyIBCModule.ReversedCallbacks()
 			// otherwise, we reconstruct the backwards compat acknowledgement using WrapAcknowledgement api
 			res := results[len(results)-1]
 			for i := len(results) - 2; i >= 0; i-- {
-				if wrapper, ok := cbs[i].(porttypes.AcknowledgementWrapper); ok {
+				if wrapper, ok := legacyCbs[i].(porttypes.AcknowledgementWrapper); ok {
 					res = wrapper.WrapAcknowledgement(ctx, msg.Packet, relayer, res, results[i])
 				}
 			}

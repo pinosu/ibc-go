@@ -50,7 +50,7 @@ func (im *LegacyIBCModule) OnChanOpenInit(
 	version string,
 ) (string, error) {
 	negotiatedVersions := make([]string, len(im.cbs))
-	for i, cb := range im.reversedCallbacks() {
+	for i, cb := range im.ReversedCallbacks() {
 		cbVersion := version
 
 		// To maintain backwards compatibility, we must handle two cases:
@@ -97,7 +97,7 @@ func (im *LegacyIBCModule) OnChanOpenTry(
 	counterpartyVersion string,
 ) (string, error) {
 	negotiatedVersions := make([]string, len(im.cbs))
-	for i, cb := range im.reversedCallbacks() {
+	for i, cb := range im.ReversedCallbacks() {
 		cbVersion := counterpartyVersion
 
 		// To maintain backwards compatibility, we must handle two cases:
@@ -140,7 +140,7 @@ func (im *LegacyIBCModule) OnChanOpenAck(
 	counterpartyChannelID string,
 	counterpartyVersion string,
 ) error {
-	for _, cb := range im.reversedCallbacks() {
+	for _, cb := range im.ReversedCallbacks() {
 		cbVersion := counterpartyVersion
 
 		// To maintain backwards compatibility, we must handle counterparty version negotiation.
@@ -171,7 +171,7 @@ func (im *LegacyIBCModule) OnChanOpenConfirm(
 	portID,
 	channelID string,
 ) error {
-	for _, cb := range im.reversedCallbacks() {
+	for _, cb := range im.ReversedCallbacks() {
 		err := cb.OnChanOpenConfirm(ctx, portID, channelID)
 		if err != nil {
 			return errorsmod.Wrapf(err, "channel open confirm callback failed for port ID: %s, channel ID: %s", portID, channelID)
@@ -186,7 +186,7 @@ func (im *LegacyIBCModule) OnChanCloseInit(
 	portID,
 	channelID string,
 ) error {
-	for _, cb := range im.reversedCallbacks() {
+	for _, cb := range im.ReversedCallbacks() {
 		if err := cb.OnChanCloseInit(ctx, portID, channelID); err != nil {
 			return errorsmod.Wrapf(err, "channel close init callback failed for port ID: %s, channel ID: %s", portID, channelID)
 		}
@@ -200,7 +200,7 @@ func (im *LegacyIBCModule) OnChanCloseConfirm(
 	portID,
 	channelID string,
 ) error {
-	for _, cb := range im.reversedCallbacks() {
+	for _, cb := range im.ReversedCallbacks() {
 		if err := cb.OnChanCloseConfirm(ctx, portID, channelID); err != nil {
 			return errorsmod.Wrapf(err, "channel close confirm callback failed for port ID: %s, channel ID: %s", portID, channelID)
 		}
@@ -248,7 +248,7 @@ func (im *LegacyIBCModule) OnRecvPacketLegacy(
 	relayer sdk.AccAddress,
 ) []ibcexported.RecvPacketResult {
 	var results []ibcexported.RecvPacketResult
-	cbs := im.reversedCallbacks()
+	cbs := im.ReversedCallbacks()
 	for _, cb := range cbs {
 		cbVersion := channelVersion
 
@@ -316,7 +316,7 @@ func (im *LegacyIBCModule) OnAcknowledgementPacket(
 	acknowledgement []byte,
 	relayer sdk.AccAddress,
 ) error {
-	for _, cb := range im.reversedCallbacks() {
+	for _, cb := range im.ReversedCallbacks() {
 		var (
 			cbVersion = channelVersion
 			cbAck     = acknowledgement
@@ -345,7 +345,7 @@ func (im *LegacyIBCModule) OnTimeoutPacket(
 	packet channeltypes.Packet,
 	relayer sdk.AccAddress,
 ) error {
-	for _, cb := range im.reversedCallbacks() {
+	for _, cb := range im.ReversedCallbacks() {
 		cbVersion := channelVersion
 
 		if wrapper, ok := cb.(VersionWrapper); ok {
@@ -362,7 +362,7 @@ func (im *LegacyIBCModule) OnTimeoutPacket(
 // OnChanUpgradeInit implements the IBCModule interface
 func (im *LegacyIBCModule) OnChanUpgradeInit(ctx sdk.Context, portID, channelID string, proposedOrder channeltypes.Order, proposedConnectionHops []string, proposedVersion string) (string, error) {
 	negotiatedVersions := make([]string, len(im.cbs))
-	for i, cb := range im.reversedCallbacks() {
+	for i, cb := range im.ReversedCallbacks() {
 		cbVersion := proposedVersion
 
 		// To maintain backwards compatibility, we must handle two cases:
@@ -404,7 +404,7 @@ func (im *LegacyIBCModule) OnChanUpgradeInit(ctx sdk.Context, portID, channelID 
 func (im *LegacyIBCModule) OnChanUpgradeTry(ctx sdk.Context, portID, channelID string, proposedOrder channeltypes.Order, proposedConnectionHops []string, counterpartyVersion string) (string, error) {
 	negotiatedVersions := make([]string, len(im.cbs))
 
-	for i, cb := range im.reversedCallbacks() {
+	for i, cb := range im.ReversedCallbacks() {
 		cbVersion := counterpartyVersion
 
 		// To maintain backwards compatibility, we must handle two cases:
@@ -444,7 +444,7 @@ func (im *LegacyIBCModule) OnChanUpgradeTry(ctx sdk.Context, portID, channelID s
 
 // OnChanUpgradeAck implements the IBCModule interface
 func (im *LegacyIBCModule) OnChanUpgradeAck(ctx sdk.Context, portID, channelID, counterpartyVersion string) error {
-	for _, cb := range im.reversedCallbacks() {
+	for _, cb := range im.ReversedCallbacks() {
 		cbVersion := counterpartyVersion
 
 		// To maintain backwards compatibility, we must handle two cases:
@@ -481,7 +481,7 @@ func (im *LegacyIBCModule) OnChanUpgradeAck(ctx sdk.Context, portID, channelID, 
 
 // OnChanUpgradeOpen implements the IBCModule interface
 func (im *LegacyIBCModule) OnChanUpgradeOpen(ctx sdk.Context, portID, channelID string, proposedOrder channeltypes.Order, proposedConnectionHops []string, proposedVersion string) {
-	for _, cb := range im.reversedCallbacks() {
+	for _, cb := range im.ReversedCallbacks() {
 		cbVersion := proposedVersion
 
 		// To maintain backwards compatibility, we must handle two cases:
@@ -519,10 +519,10 @@ func (*LegacyIBCModule) UnmarshalPacketData(ctx sdk.Context, portID, channelID s
 	return nil, nil
 }
 
-// reversedCallbacks returns a copy of the callbacks in reverse order.
+// ReversedCallbacks returns a copy of the callbacks in reverse order.
 // the majority of handlers are called in reverse order, so this can be used
 // in those cases to prevent needing to iterate backwards over the callbacks.
-func (im *LegacyIBCModule) reversedCallbacks() []ClassicIBCModule {
+func (im *LegacyIBCModule) ReversedCallbacks() []ClassicIBCModule {
 	cbs := slices.Clone(im.cbs)
 	slices.Reverse(cbs)
 	return cbs
