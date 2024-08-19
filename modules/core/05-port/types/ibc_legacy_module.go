@@ -14,7 +14,7 @@ import (
 	ibcexported "github.com/cosmos/ibc-go/v9/modules/core/exported"
 )
 
-var _ ClassicIBCModule = (*LegacyIBCModule)(nil)
+// var _ ClassicIBCModule = (*LegacyIBCModule)(nil)
 
 // LegacyIBCModule implements the ICS26 interface for transfer given the transfer keeper.
 type LegacyIBCModule struct {
@@ -228,17 +228,26 @@ func (im *LegacyIBCModule) OnSendPacket(
 	return nil
 }
 
-// OnRecvPacket implements the IBCModule interface. A successful acknowledgement
-// is returned if the packet data is successfully decoded and the receive application
-// logic returns without error.
-// A nil acknowledgement may be returned when using the packet forwarding feature. This signals to core IBC that the acknowledgement will be written asynchronously.
 func (im *LegacyIBCModule) OnRecvPacket(
 	ctx sdk.Context,
 	channelVersion string,
 	packet channeltypes.Packet,
 	relayer sdk.AccAddress,
 ) ibcexported.RecvPacketResult {
-	var resultList []ibcexported.RecvPacketResult
+	return ibcexported.RecvPacketResult{}
+}
+
+// OnRecvPacket implements the IBCModule interface. A successful acknowledgement
+// is returned if the packet data is successfully decoded and the receive application
+// logic returns without error.
+// A nil acknowledgement may be returned when using the packet forwarding feature. This signals to core IBC that the acknowledgement will be written asynchronously.
+func (im *LegacyIBCModule) OnRecvPacketLegacy(
+	ctx sdk.Context,
+	channelVersion string,
+	packet channeltypes.Packet,
+	relayer sdk.AccAddress,
+) []ibcexported.RecvPacketResult {
+	var results []ibcexported.RecvPacketResult
 	cbs := im.reversedCallbacks()
 	for _, cb := range cbs {
 		cbVersion := channelVersion
@@ -248,9 +257,10 @@ func (im *LegacyIBCModule) OnRecvPacket(
 		}
 
 		res := cb.OnRecvPacket(ctx, cbVersion, packet, relayer)
-		resultList = append(resultList, res)
+		results = append(results, res)
 	}
 
+	return results
 	// Example (sync):
 	// ResultList {
 	// 		fee: { Status: Success, Acknowledgement: feeAck.Bytes() }
@@ -272,20 +282,20 @@ func (im *LegacyIBCModule) OnRecvPacket(
 	// if res.Status == Async, then res.Acknowledgement == nil
 	// TODO: add validate func
 
-	for _, res := range resultList {
-		if res.Status == ibcexported.Async {
-			// write now, wrap later.
-			im.recvPacketResultReadWriter.StoreRecvResults(ctx, packet.DestinationPort, packet.DestinationChannel, packet.Sequence, resultList)
-			return res
-		}
-	}
+	// for _, res := range resultList {
+	// 	if res.Status == ibcexported.Async {
+	// 		// write now, wrap later.
+	// 		im.recvPacketResultReadWriter.StoreRecvResults(ctx, packet.DestinationPort, packet.DestinationChannel, packet.Sequence, resultList)
+	// 		return res
+	// 	}
+	// }
 
-	res := resultList[len(resultList)-1]
-	for i := len(resultList) - 2; i >= 0; i-- {
-		if wrapper, ok := cbs[i].(AcknowledgementWrapper); ok {
-			res = wrapper.WrapAcknowledgement(ctx, packet, relayer, res, resultList[i])
-		}
-	}
+	// res := resultList[len(resultList)-1]
+	// for i := len(resultList) - 2; i >= 0; i-- {
+	// 	if wrapper, ok := cbs[i].(AcknowledgementWrapper); ok {
+	// 		res = wrapper.WrapAcknowledgement(ctx, packet, relayer, res, resultList[i])
+	// 	}
+	// }
 
 	// if any of the results in resultList are failed then we return a failed result (we also need to wrap for failed)
 	// if any of the results in resultList are async we need to return a final async result
@@ -295,7 +305,7 @@ func (im *LegacyIBCModule) OnRecvPacket(
 	// Store ResultList: [ A, B ]
 	// WriteAsyncAck for C: look up result list and call wrapper.WrapAck with
 
-	return res
+	// return res
 }
 
 // OnAcknowledgementPacket implements the IBCModule interface
