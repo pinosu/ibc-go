@@ -144,11 +144,26 @@ func (k *Keeper) IBCSoftwareUpgrade(goCtx context.Context, msg *clienttypes.MsgI
 	return &clienttypes.MsgIBCSoftwareUpgradeResponse{}, nil
 }
 
+// CreateChannel defines a rpc handler method for MsgCreateChannel
+func (k *Keeper) CreateChannel(goCtx context.Context, msg *packetservertypes.MsgCreateChannel) (*packetservertypes.MsgCreateChannelResponse, error) {
+	ctx := sdk.UnwrapSDKContext(goCtx)
+
+	channelID := k.ChannelKeeper.GenerateChannelIdentifier(ctx)
+
+	// Initialize counterparty with empty counterparty channel identifier.
+	counterparty := packetservertypes.NewCounterparty(msg.ClientId, "", msg.MerklePathPrefix)
+	k.PacketServerKeeper.SetCounterparty(ctx, channelID, counterparty)
+
+	k.ClientKeeper.SetCreator(ctx, channelID, msg.Signer)
+
+	return &packetservertypes.MsgCreateChannelResponse{ChannelId: channelID}, nil
+}
+
 // ProvideCounterparty defines a rpc handler method for MsgProvideCounterparty.
 func (k *Keeper) ProvideCounterparty(goCtx context.Context, msg *packetservertypes.MsgProvideCounterparty) (*packetservertypes.MsgProvideCounterpartyResponse, error) {
 	ctx := sdk.UnwrapSDKContext(goCtx)
 
-	creator, found := k.ClientKeeper.GetCreator(ctx, msg.Counterparty.ClientId)
+	creator, found := k.ClientKeeper.GetCreator(ctx, msg.ChannelId)
 	if !found {
 		return nil, errorsmod.Wrap(ibcerrors.ErrUnauthorized, "client creator must be set")
 	}
@@ -157,13 +172,16 @@ func (k *Keeper) ProvideCounterparty(goCtx context.Context, msg *packetservertyp
 		return nil, errorsmod.Wrapf(ibcerrors.ErrUnauthorized, "client creator (%s) must match signer (%s)", creator, msg.Signer)
 	}
 
-	if _, ok := k.PacketServerKeeper.GetCounterparty(ctx, msg.ChannelId); ok {
-		return nil, errorsmod.Wrapf(packetservertypes.ErrInvalidCounterparty, "counterparty already exists for client %s", msg.ChannelId)
+	counterparty, ok := k.PacketServerKeeper.GetCounterparty(ctx, msg.ChannelId)
+	if !ok {
+		return nil, errorsmod.Wrapf(packetservertypes.ErrInvalidCounterparty, "counterparty must exists for channel %s", msg.ChannelId)
 	}
 
-	k.PacketServerKeeper.SetCounterparty(ctx, msg.ChannelId, msg.Counterparty)
+    // Note: to be replaced with msg.CounterpartyChannelId, don't need full counterparty now.
+	counterparty.CounterpartyChannelId = msg.Counterparty.CounterpartyChannelId
+	k.PacketServerKeeper.SetCounterparty(ctx, msg.ChannelId, counterparty)
 	// Delete client creator from state as it is not needed after this point.
-	k.ClientKeeper.DeleteCreator(ctx, msg.Counterparty.ClientId)
+	k.ClientKeeper.DeleteCreator(ctx, msg.ChannelId)
 
 	return &packetservertypes.MsgProvideCounterpartyResponse{}, nil
 }
