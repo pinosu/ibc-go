@@ -68,7 +68,7 @@ func (suite *KeeperTestSuite) TestSendPacket() {
 		{
 			"counterparty not found",
 			func() {
-				packet.SourceChannel = ibctesting.FirstChannelID
+				packet.SourceChannel = ibctesting.InvalidID
 			},
 			types.ErrCounterpartyNotFound,
 		},
@@ -121,7 +121,7 @@ func (suite *KeeperTestSuite) TestSendPacket() {
 
 			// create standard packet that can be malleated
 			packet = channeltypes.NewPacketWithVersion(mock.MockPacketData, 1, mock.PortID,
-				path.EndpointA.ClientID, mock.PortID, path.EndpointB.ClientID, clienttypes.NewHeight(1, 100), 0, mock.Version)
+				path.EndpointA.ChannelID, mock.PortID, path.EndpointB.ChannelID, clienttypes.NewHeight(1, 100), 0, mock.Version)
 
 			// malleate the test case
 			tc.malleate()

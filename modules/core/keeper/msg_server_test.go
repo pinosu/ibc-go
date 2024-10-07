@@ -1267,7 +1267,7 @@ func (suite *KeeperTestSuite) TestProvideCounterparty() {
 			suite.Require().True(found)
 			suite.Require().Equal(counterparty, msg.Counterparty)
 
-			_, found = suite.chainA.App.GetIBCKeeper().ClientKeeper.GetCreator(suite.chainA.GetContext(), path.EndpointA.ClientID)
+			_, found = suite.chainA.App.GetIBCKeeper().PacketServerKeeper.GetCreator(suite.chainA.GetContext(), path.EndpointA.ClientID)
 			suite.Require().False(found)
 		} else {
 			suite.Require().Nil(resp)

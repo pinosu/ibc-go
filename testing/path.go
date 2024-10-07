@@ -148,10 +148,12 @@ func (path *Path) Setup() {
 	path.CreateChannels()
 }
 
-// SetupV2 constructs clients on both sides and then provides the counterparties for both sides
-// This is all that is necessary for path setup with the Eureka (V2) protocol
+// TODO(jim): Docustring this
 func (path *Path) SetupV2() {
 	path.SetupClients()
+
+	path.CreateChannelsV2()
+
 	path.SetupCounterparties()
 }
 
@@ -247,6 +249,19 @@ func (path *Path) CreateChannels() {
 
 	// ensure counterparty is up to date
 	err = path.EndpointA.UpdateClient()
+	if err != nil {
+		panic(err)
+	}
+}
+
+// TODO(jim): docustring this
+func (path *Path) CreateChannelsV2() {
+	err := path.EndpointA.CreateChannel()
+	if err != nil {
+		panic(err)
+	}
+
+	err = path.EndpointB.CreateChannel()
 	if err != nil {
 		panic(err)
 	}

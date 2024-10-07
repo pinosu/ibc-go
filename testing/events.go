@@ -47,7 +47,7 @@ func ParseConnectionIDFromEvents(events []abci.Event) (string, error) {
 // MsgChannelOpenTry and returns the channel identifier.
 func ParseChannelIDFromEvents(events []abci.Event) (string, error) {
 	for _, ev := range events {
-		if ev.Type == channeltypes.EventTypeChannelOpenInit || ev.Type == channeltypes.EventTypeChannelOpenTry {
+		if ev.Type == "create_channel" || ev.Type == channeltypes.EventTypeChannelOpenInit || ev.Type == channeltypes.EventTypeChannelOpenTry {
 			if attribute, found := attributeByKey(ev.Attributes, channeltypes.AttributeKeyChannelID); found {
 				return attribute.Value, nil
 			}
