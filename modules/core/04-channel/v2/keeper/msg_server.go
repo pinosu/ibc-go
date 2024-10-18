@@ -2,6 +2,7 @@ package keeper
 
 import (
 	"context"
+	"fmt"
 	"slices"
 
 	errorsmod "cosmossdk.io/errors"
@@ -24,6 +25,15 @@ func (k *Keeper) SendPacket(ctx context.Context, msg *channeltypesv2.MsgSendPack
 	if err != nil {
 		sdkCtx.Logger().Error("send packet failed", "source-channel", msg.SourceChannel, "error", errorsmod.Wrap(err, "send packet failed"))
 		return nil, errorsmod.Wrapf(err, "send packet failed for source id: %s", msg.SourceChannel)
+	}
+
+	fmt.Println("TimeoutTimestamp:", msg.TimeoutTimestamp)
+	fmt.Println("BlockTime:", uint64(sdkCtx.BlockTime().Unix()))
+	fmt.Println("MaxTimeout:", channeltypesv2.MaxTimeout)
+	fmt.Println(channeltypesv2.MaxTimeout > msg.TimeoutTimestamp-uint64(sdkCtx.BlockTime().Unix()))
+
+	if uint64(sdkCtx.BlockTime().Unix()) > msg.TimeoutTimestamp || msg.TimeoutTimestamp > uint64(sdkCtx.BlockTime().Unix())+channeltypesv2.MaxTimeout {
+		return nil, errorsmod.Wrap(err, "invalid timeout")
 	}
 
 	signer, err := sdk.AccAddressFromBech32(msg.Signer)
