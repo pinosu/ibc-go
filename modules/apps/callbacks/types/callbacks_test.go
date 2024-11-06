@@ -538,7 +538,6 @@ func (s *CallbacksTypesTestSuite) TestGetCallbackData() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		s.Run(tc.name, func() {
 			s.SetupTest()
 
@@ -631,7 +630,6 @@ func (s *CallbacksTypesTestSuite) TestGetSourceCallbackDataTransfer() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		s.Run(tc.name, func() {
 			s.SetupTest()
 
@@ -720,7 +718,6 @@ func (s *CallbacksTypesTestSuite) TestGetDestCallbackDataTransfer() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		s.Run(tc.name, func() {
 			s.SetupTest()
 
@@ -968,7 +965,6 @@ func (s *CallbacksTypesTestSuite) TestGetCallbackAddress() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		s.Run(tc.name, func() {
 			callbackData, ok := tc.packetData.GetCustomPacketData(types.SourceCallbackKey).(map[string]interface{})
 			s.Require().Equal(ok, callbackData != nil)
@@ -1225,7 +1221,6 @@ func (s *CallbacksTypesTestSuite) TestUserDefinedGasLimit() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		s.Run(tc.name, func() {
 			callbackData, ok := tc.packetData.GetCustomPacketData(types.SourceCallbackKey).(map[string]interface{})
 			s.Require().Equal(ok, callbackData != nil)

@@ -72,8 +72,6 @@ func (suite *KeeperTestSuite) TestCreateClient() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
-
 		suite.Run(fmt.Sprintf("Case %s", tc.msg), func() {
 			suite.SetupTest() // reset
 			clientState, consensusState = []byte{}, []byte{}
@@ -271,7 +269,6 @@ func (suite *KeeperTestSuite) TestUpdateClientTendermint() {
 	}
 
 	for _, tc := range cases {
-		tc := tc
 		suite.Run(fmt.Sprintf("Case %s", tc.name), func() {
 			suite.SetupTest()
 			path = ibctesting.NewPath(suite.chainA, suite.chainB)
@@ -466,7 +463,6 @@ func (suite *KeeperTestSuite) TestUpgradeClient() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			path = ibctesting.NewPath(suite.chainA, suite.chainB)
 			path.SetupClients()
@@ -635,8 +631,6 @@ func (suite *KeeperTestSuite) TestRecoverClient() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
-
 		suite.Run(tc.msg, func() {
 			suite.SetupTest() // reset
 

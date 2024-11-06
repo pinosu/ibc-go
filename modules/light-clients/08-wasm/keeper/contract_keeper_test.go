@@ -162,7 +162,6 @@ func (suite *KeeperTestSuite) TestWasmInstantiate() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			suite.SetupWasmWithMockVM()
 			checksum := suite.storeWasmCode(wasmtesting.Code)
@@ -303,7 +302,6 @@ func (suite *KeeperTestSuite) TestWasmMigrate() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			suite.SetupWasmWithMockVM()
 			_ = suite.storeWasmCode(wasmtesting.Code)
@@ -374,7 +372,6 @@ func (suite *KeeperTestSuite) TestWasmQuery() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			suite.SetupWasmWithMockVM()
 			_ = suite.storeWasmCode(wasmtesting.Code)
@@ -530,7 +527,6 @@ func (suite *KeeperTestSuite) TestWasmSudo() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			suite.SetupWasmWithMockVM()
 			_ = suite.storeWasmCode(wasmtesting.Code)

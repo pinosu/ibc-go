@@ -103,7 +103,6 @@ func (suite *FeeTestSuite) TestTransferFeeUpgrade() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			suite.SetupTest()
 

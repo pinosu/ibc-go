@@ -63,8 +63,6 @@ func (suite *KeeperTestSuite) TestRegisterPayee() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
-
 		suite.Run(tc.name, func() {
 			suite.SetupTest()
 			suite.path.Setup()
@@ -154,8 +152,6 @@ func (suite *KeeperTestSuite) TestRegisterCounterpartyPayee() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
-
 		suite.Run(tc.name, func() {
 			suite.SetupTest()
 			suite.path.Setup() // setup channel
@@ -339,8 +335,6 @@ func (suite *KeeperTestSuite) TestPayPacketFee() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
-
 		suite.Run(tc.name, func() {
 			suite.SetupTest()
 			suite.path.Setup() // setup channel
@@ -569,8 +563,6 @@ func (suite *KeeperTestSuite) TestPayPacketFeeAsync() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
-
 		suite.Run(tc.name, func() {
 			suite.SetupTest()
 			suite.path.Setup() // setup channel

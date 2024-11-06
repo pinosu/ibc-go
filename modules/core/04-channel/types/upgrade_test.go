@@ -57,7 +57,6 @@ func (suite *TypesTestSuite) TestUpgradeValidateBasic() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			upgrade = types.NewUpgrade(
 				types.NewUpgradeFields(types.ORDERED, []string{ibctesting.FirstConnectionID}, mock.Version),
@@ -134,7 +133,6 @@ func (suite *TypesTestSuite) TestUpgradeErrorIsOf() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.msg, func() {
 			upgradeError = types.NewUpgradeError(1, types.ErrInvalidChannel)
 			inputErr = types.ErrInvalidChannel
@@ -179,7 +177,6 @@ func (suite *TypesTestSuite) TestUpgradeErrorUnwrap() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.msg, func() {
 			upgradeError := tc.upgradeError
 			err := upgradeError.Unwrap()
@@ -248,7 +245,6 @@ func (suite *TypesTestSuite) TestIsUpgradeError() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.msg, func() {
 			err = types.NewUpgradeError(1, types.ErrInvalidChannel)
 

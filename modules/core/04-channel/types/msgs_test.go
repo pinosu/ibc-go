@@ -243,8 +243,6 @@ func (suite *TypesTestSuite) TestMsgChannelOpenInitValidateBasic() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
-
 		suite.Run(tc.name, func() {
 			err := tc.msg.ValidateBasic()
 
@@ -415,8 +413,6 @@ func (suite *TypesTestSuite) TestMsgChannelOpenTryValidateBasic() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
-
 		suite.Run(tc.name, func() {
 			err := tc.msg.ValidateBasic()
 
@@ -526,8 +522,6 @@ func (suite *TypesTestSuite) TestMsgChannelOpenAckValidateBasic() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
-
 		suite.Run(tc.name, func() {
 			err := tc.msg.ValidateBasic()
 
@@ -621,8 +615,6 @@ func (suite *TypesTestSuite) TestMsgChannelOpenConfirmValidateBasic() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
-
 		suite.Run(tc.name, func() {
 			err := tc.msg.ValidateBasic()
 
@@ -711,8 +703,6 @@ func (suite *TypesTestSuite) TestMsgChannelCloseInitValidateBasic() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
-
 		suite.Run(tc.name, func() {
 			err := tc.msg.ValidateBasic()
 
@@ -811,8 +801,6 @@ func (suite *TypesTestSuite) TestMsgChannelCloseConfirmValidateBasic() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
-
 		suite.Run(tc.name, func() {
 			err := tc.msg.ValidateBasic()
 
@@ -868,8 +856,6 @@ func (suite *TypesTestSuite) TestMsgRecvPacketValidateBasic() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
-
 		suite.Run(tc.name, func() {
 			err := tc.msg.ValidateBasic()
 
@@ -930,8 +916,6 @@ func (suite *TypesTestSuite) TestMsgTimeoutValidateBasic() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
-
 		suite.Run(tc.name, func() {
 			err := tc.msg.ValidateBasic()
 
@@ -1002,8 +986,6 @@ func (suite *TypesTestSuite) TestMsgTimeoutOnCloseValidateBasic() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
-
 		suite.Run(tc.name, func() {
 			err := tc.msg.ValidateBasic()
 
@@ -1064,8 +1046,6 @@ func (suite *TypesTestSuite) TestMsgAcknowledgementValidateBasic() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
-
 		suite.Run(tc.name, func() {
 			err := tc.msg.ValidateBasic()
 
@@ -1142,7 +1122,6 @@ func (suite *TypesTestSuite) TestMsgChannelUpgradeInitValidateBasic() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			msg = types.NewMsgChannelUpgradeInit(
 				ibctesting.MockPort, ibctesting.FirstChannelID,
@@ -1260,7 +1239,6 @@ func (suite *TypesTestSuite) TestMsgChannelUpgradeTryValidateBasic() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			msg = types.NewMsgChannelUpgradeTry(
 				ibctesting.MockPort,
@@ -1367,7 +1345,6 @@ func (suite *TypesTestSuite) TestMsgChannelUpgradeAckValidateBasic() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			upgrade := types.NewUpgrade(
 				types.NewUpgradeFields(types.ORDERED, []string{ibctesting.FirstConnectionID}, mock.Version),
@@ -1488,7 +1465,6 @@ func (suite *TypesTestSuite) TestMsgChannelUpgradeConfirmValidateBasic() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			counterpartyUpgrade := types.NewUpgrade(
 				types.NewUpgradeFields(types.UNORDERED, []string{ibctesting.FirstConnectionID}, mock.Version),
@@ -1601,7 +1577,6 @@ func (suite *TypesTestSuite) TestMsgChannelUpgradeOpenValidateBasic() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			msg = types.NewMsgChannelUpgradeOpen(
 				ibctesting.MockPort, ibctesting.FirstChannelID,
@@ -1680,7 +1655,6 @@ func (suite *TypesTestSuite) TestMsgChannelUpgradeTimeoutValidateBasic() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			msg = types.NewMsgChannelUpgradeTimeout(
 				ibctesting.MockPort, ibctesting.FirstChannelID,
@@ -1770,7 +1744,6 @@ func (suite *TypesTestSuite) TestMsgChannelUpgradeCancelValidateBasic() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			msg = types.NewMsgChannelUpgradeCancel(ibctesting.MockPort, ibctesting.FirstChannelID, types.ErrorReceipt{Sequence: 1}, suite.proof, height, addr)
 
@@ -1844,7 +1817,6 @@ func (suite *TypesTestSuite) TestMsgPruneAcknowledgementsValidateBasic() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			msg = types.NewMsgPruneAcknowledgements(ibctesting.MockPort, ibctesting.FirstChannelID, 1, addr)
 
@@ -1899,7 +1871,6 @@ func (suite *TypesTestSuite) TestMsgUpdateParamsValidateBasic() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			msg = types.NewMsgUpdateChannelParams(authtypes.NewModuleAddress(govtypes.ModuleName).String(), types.NewParams(types.NewTimeout(clienttypes.ZeroHeight(), uint64(100000))))
 

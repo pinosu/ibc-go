@@ -71,8 +71,6 @@ func TestMsgRegisterPayeeValidation(t *testing.T) {
 	}
 
 	for i, tc := range testCases {
-		tc := tc
-
 		t.Run(tc.name, func(t *testing.T) {
 			relayerAddr := sdk.AccAddress(secp256k1.GenPrivKey().PubKey().Address())
 			payeeAddr := sdk.AccAddress(secp256k1.GenPrivKey().PubKey().Address())
@@ -160,8 +158,6 @@ func TestMsgRegisterCountepartyPayeeValidation(t *testing.T) {
 	}
 
 	for i, tc := range testCases {
-		i, tc := i, tc
-
 		t.Run(tc.name, func(t *testing.T) {
 			payeeAddr, err := sdk.AccAddressFromBech32(ibctesting.TestAccAddress)
 			require.NoError(t, err)
@@ -241,7 +237,6 @@ func TestMsgPayPacketFeeValidation(t *testing.T) {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 
 		fee := types.NewFee(defaultRecvFee, defaultAckFee, defaultTimeoutFee)
 		msg = types.NewMsgPayPacketFee(fee, ibctesting.MockFeePort, ibctesting.FirstChannelID, defaultAccAddress, nil)
@@ -375,7 +370,6 @@ func TestMsgPayPacketFeeAsyncValidation(t *testing.T) {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 
 		packetID := channeltypes.NewPacketID(ibctesting.MockFeePort, ibctesting.FirstChannelID, 1)
 		fee := types.NewFee(defaultRecvFee, defaultAckFee, defaultTimeoutFee)

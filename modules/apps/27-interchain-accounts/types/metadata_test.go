@@ -113,7 +113,6 @@ func (suite *TypesTestSuite) TestIsPreviousMetadataEqual() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			suite.SetupTest() // reset
 
@@ -264,7 +263,6 @@ func (suite *TypesTestSuite) TestValidateControllerMetadata() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			suite.SetupTest() // reset
 
@@ -419,7 +417,6 @@ func (suite *TypesTestSuite) TestValidateHostMetadata() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			suite.SetupTest() // reset
 

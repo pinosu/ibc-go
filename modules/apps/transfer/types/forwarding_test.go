@@ -94,8 +94,6 @@ func TestForwarding_Validate(t *testing.T) {
 	}
 	for _, tc := range tests {
 		t.Run(tc.name, func(t *testing.T) {
-			tc := tc
-
 			err := tc.forwarding.Validate()
 
 			expPass := tc.expError == nil
@@ -205,8 +203,6 @@ func TestForwardingPacketData_Validate(t *testing.T) {
 	}
 	for _, tc := range tests {
 		t.Run(tc.name, func(t *testing.T) {
-			tc := tc
-
 			err := tc.forwarding.Validate()
 
 			expPass := tc.expError == nil
@@ -263,8 +259,6 @@ func TestValidateHop(t *testing.T) {
 	}
 	for _, tc := range tests {
 		t.Run(tc.name, func(t *testing.T) {
-			tc := tc
-
 			err := tc.hop.Validate()
 
 			expPass := tc.expError == nil

@@ -116,8 +116,6 @@ func TestFeeTotal(t *testing.T) {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
-
 		t.Run(tc.name, func(t *testing.T) {
 			fee = types.NewFee(defaultRecvFee, defaultAckFee, defaultTimeoutFee)
 
@@ -213,8 +211,6 @@ func TestPacketFeeValidation(t *testing.T) {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
-
 		t.Run(tc.name, func(t *testing.T) {
 			fee := types.NewFee(defaultRecvFee, defaultAckFee, defaultTimeoutFee)
 			packetFee = types.NewPacketFee(fee, defaultAccAddress, nil)

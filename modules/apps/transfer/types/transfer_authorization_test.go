@@ -482,8 +482,6 @@ func (suite *TypesTestSuite) TestTransferAuthorizationAccept() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
-
 		suite.Run(tc.name, func() {
 			suite.SetupTest()
 
@@ -670,8 +668,6 @@ func (suite *TypesTestSuite) TestTransferAuthorizationValidateBasic() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
-
 		suite.Run(tc.name, func() {
 			transferAuthz = types.TransferAuthorization{
 				Allocations: []types.Allocation{

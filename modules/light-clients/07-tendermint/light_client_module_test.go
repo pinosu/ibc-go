@@ -73,7 +73,6 @@ func (suite *TendermintTestSuite) TestInitialize() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			suite.SetupTest()
 			path := ibctesting.NewPath(suite.chainA, suite.chainB)
@@ -141,7 +140,6 @@ func (suite *TendermintTestSuite) TestVerifyClientMessage() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			suite.SetupTest()
 
@@ -480,8 +478,6 @@ func (suite *TendermintTestSuite) TestVerifyMembership() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
-
 		suite.Run(tc.name, func() {
 			suite.SetupTest() // reset
 			testingpath = ibctesting.NewPath(suite.chainA, suite.chainB)
@@ -709,8 +705,6 @@ func (suite *TendermintTestSuite) TestVerifyNonMembership() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
-
 		suite.Run(tc.name, func() {
 			suite.SetupTest() // reset
 			testingpath = ibctesting.NewPath(suite.chainA, suite.chainB)
@@ -803,7 +797,6 @@ func (suite *TendermintTestSuite) TestStatus() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			suite.SetupTest()
 
@@ -822,7 +815,6 @@ func (suite *TendermintTestSuite) TestStatus() {
 			status := lightClientModule.Status(suite.chainA.GetContext(), path.EndpointA.ClientID)
 			suite.Require().Equal(tc.expStatus, status)
 		})
-
 	}
 }
 
@@ -853,7 +845,6 @@ func (suite *TendermintTestSuite) TestLatestHeight() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			suite.SetupTest()
 
@@ -908,7 +899,6 @@ func (suite *TendermintTestSuite) TestGetTimestampAtHeight() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			suite.SetupTest()
 
@@ -995,7 +985,6 @@ func (suite *TendermintTestSuite) TestRecoverClient() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			suite.SetupTest() // reset
 			ctx := suite.chainA.GetContext()
@@ -1144,7 +1133,6 @@ func (suite *TendermintTestSuite) TestVerifyUpgradeAndUpdateState() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			suite.SetupTest() // reset
 

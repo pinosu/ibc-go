@@ -104,8 +104,6 @@ func (suite *WasmTestSuite) TestStatus() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
-
 		suite.Run(tc.name, func() {
 			suite.SetupWasmWithMockVM()
 
@@ -202,7 +200,6 @@ func (suite *WasmTestSuite) TestTimestampAtHeight() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			suite.SetupWasmWithMockVM()
 
@@ -1507,7 +1504,6 @@ func (suite *WasmTestSuite) TestRecoverClient() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			suite.SetupWasmWithMockVM()
 
@@ -1567,7 +1563,6 @@ func (suite *WasmTestSuite) TestLatestHeight() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			suite.SetupWasmWithMockVM()
 

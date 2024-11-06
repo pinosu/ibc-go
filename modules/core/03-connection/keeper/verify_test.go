@@ -47,8 +47,6 @@ func (suite *KeeperTestSuite) TestVerifyConnectionState() {
 	}
 
 	for _, tc := range cases {
-		tc := tc
-
 		suite.Run(tc.name, func() {
 			suite.SetupTest() // reset
 
@@ -109,8 +107,6 @@ func (suite *KeeperTestSuite) TestVerifyChannelState() {
 	}
 
 	for _, tc := range cases {
-		tc := tc
-
 		suite.Run(fmt.Sprintf("Case %s", tc.name), func() {
 			suite.SetupTest() // reset
 
@@ -186,8 +182,6 @@ func (suite *KeeperTestSuite) TestVerifyPacketCommitment() {
 	}
 
 	for _, tc := range cases {
-		tc := tc
-
 		suite.Run(tc.name, func() {
 			suite.SetupTest() // reset
 
@@ -277,8 +271,6 @@ func (suite *KeeperTestSuite) TestVerifyPacketAcknowledgement() {
 	}
 
 	for _, tc := range cases {
-		tc := tc
-
 		suite.Run(tc.name, func() {
 			suite.SetupTest()                 // reset
 			ack = ibcmock.MockAcknowledgement // must be explicitly changed
@@ -382,8 +374,6 @@ func (suite *KeeperTestSuite) TestVerifyPacketReceiptAbsence() {
 	}
 
 	for _, tc := range cases {
-		tc := tc
-
 		suite.Run(tc.name, func() {
 			suite.SetupTest() // reset
 
@@ -483,8 +473,6 @@ func (suite *KeeperTestSuite) TestVerifyNextSequenceRecv() {
 	}
 
 	for _, tc := range cases {
-		tc := tc
-
 		suite.Run(tc.name, func() {
 			suite.SetupTest() // reset
 
@@ -585,8 +573,6 @@ func (suite *KeeperTestSuite) TestVerifyUpgradeErrorReceipt() {
 	}
 
 	for _, tc := range cases {
-		tc := tc
-
 		suite.Run(tc.name, func() {
 			suite.SetupTest() // reset
 
@@ -658,8 +644,6 @@ func (suite *KeeperTestSuite) TestVerifyUpgrade() {
 	}
 
 	for _, tc := range cases {
-		tc := tc
-
 		suite.Run(tc.name, func() {
 			suite.SetupTest() // reset
 

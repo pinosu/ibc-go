@@ -292,7 +292,6 @@ func (suite *TendermintTestSuite) TestVerifyHeader() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			suite.SetupTest()
 			path = ibctesting.NewPath(suite.chainA, suite.chainB)
@@ -506,7 +505,6 @@ func (suite *TendermintTestSuite) TestUpdateState() {
 		},
 	}
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			suite.SetupTest() // reset
 			pruneHeight = clienttypes.ZeroHeight()
@@ -878,7 +876,6 @@ func (suite *TendermintTestSuite) TestCheckForMisbehaviour() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			// reset suite to create fresh application state
 			suite.SetupTest()
@@ -930,8 +927,6 @@ func (suite *TendermintTestSuite) TestUpdateStateOnMisbehaviour() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
-
 		suite.Run(tc.name, func() {
 			// reset suite to create fresh application state
 			suite.SetupTest()

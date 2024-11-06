@@ -165,7 +165,6 @@ func (suite *KeeperTestSuite) TestMigrate1to2() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 
 		suite.SetupTest()
 		suite.path.Setup()

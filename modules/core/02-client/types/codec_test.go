@@ -43,7 +43,7 @@ func (suite *TypesTestSuite) TestPackClientState() {
 	testCasesAny := []caseAny{}
 
 	for _, tc := range testCases {
-		tc := tc
+
 		protoAny, err := types.PackClientState(tc.clientState)
 		if tc.expPass {
 			suite.Require().NoError(err, tc.name)
@@ -55,7 +55,6 @@ func (suite *TypesTestSuite) TestPackClientState() {
 	}
 
 	for i, tc := range testCasesAny {
-		i, tc := i, tc
 
 		cs, err := types.UnpackClientState(tc.any)
 		if tc.expPass {
@@ -93,7 +92,7 @@ func (suite *TypesTestSuite) TestPackConsensusState() {
 	testCasesAny := []caseAny{}
 
 	for _, tc := range testCases {
-		tc := tc
+
 		protoAny, err := types.PackConsensusState(tc.consensusState)
 		if tc.expPass {
 			suite.Require().NoError(err, tc.name)
@@ -104,7 +103,6 @@ func (suite *TypesTestSuite) TestPackConsensusState() {
 	}
 
 	for i, tc := range testCasesAny {
-		tc := tc
 
 		cs, err := types.UnpackConsensusState(tc.any)
 		if tc.expPass {
@@ -142,7 +140,7 @@ func (suite *TypesTestSuite) TestPackClientMessage() {
 	testCasesAny := []caseAny{}
 
 	for _, tc := range testCases {
-		tc := tc
+
 		protoAny, err := types.PackClientMessage(tc.clientMessage)
 		if tc.expPass {
 			suite.Require().NoError(err, tc.name)
@@ -154,7 +152,7 @@ func (suite *TypesTestSuite) TestPackClientMessage() {
 	}
 
 	for i, tc := range testCasesAny {
-		tc := tc
+
 		cs, err := types.UnpackClientMessage(tc.any)
 		if tc.expPass {
 			suite.Require().NoError(err, tc.name)
@@ -214,8 +212,6 @@ func (suite *TypesTestSuite) TestCodecTypeRegistration() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
-
 		suite.Run(tc.name, func() {
 			msg, err := suite.chainA.GetSimApp().AppCodec().InterfaceRegistry().Resolve(tc.typeURL)
 

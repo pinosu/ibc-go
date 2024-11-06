@@ -84,7 +84,6 @@ func (suite *KeeperTestSuite) TestChanUpgradeInit() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			suite.SetupTest()
 
@@ -291,7 +290,6 @@ func (suite *KeeperTestSuite) TestChanUpgradeTry() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			suite.SetupTest()
 			expPass := tc.expError == nil
@@ -583,7 +581,6 @@ func (suite *KeeperTestSuite) TestWriteUpgradeTry() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			suite.SetupTest()
 
@@ -745,7 +742,6 @@ func (suite *KeeperTestSuite) TestChanUpgradeAck() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			suite.SetupTest()
 
@@ -825,7 +821,6 @@ func (suite *KeeperTestSuite) TestWriteChannelUpgradeAck() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			suite.SetupTest()
 
@@ -1097,7 +1092,6 @@ func (suite *KeeperTestSuite) TestChanUpgradeConfirm() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			suite.SetupTest()
 
@@ -1170,7 +1164,6 @@ func (suite *KeeperTestSuite) TestWriteUpgradeConfirm() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			suite.SetupTest()
 
@@ -1326,7 +1319,6 @@ func (suite *KeeperTestSuite) TestChanUpgradeOpen() {
 	suite.Require().NoError(path.EndpointA.ChanOpenInit())
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			suite.SetupTest()
 
@@ -1400,7 +1392,6 @@ func (suite *KeeperTestSuite) TestWriteUpgradeOpenChannel() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			suite.SetupTest()
 
@@ -1588,7 +1579,6 @@ func (suite *KeeperTestSuite) TestWriteUpgradeOpenChannel_Ordering() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			suite.SetupTest()
 
@@ -1803,7 +1793,6 @@ func (suite *KeeperTestSuite) TestChanUpgradeCancel() {
 	}
 
 	for _, tc := range tests {
-		tc := tc
 		suite.Run(tc.name, func() {
 			suite.SetupTest()
 			path = ibctesting.NewPath(suite.chainA, suite.chainB)
@@ -1943,7 +1932,6 @@ func (suite *KeeperTestSuite) TestWriteUpgradeCancelChannel() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			suite.SetupTest()
 
@@ -2170,7 +2158,6 @@ func (suite *KeeperTestSuite) TestChanUpgradeTimeout() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			suite.SetupTest()
 			expPass := tc.expError == nil
@@ -2255,7 +2242,6 @@ func (suite *KeeperTestSuite) TestStartFlush() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			suite.SetupTest()
 
@@ -2375,7 +2361,6 @@ func (suite *KeeperTestSuite) TestValidateUpgradeFields() {
 	}
 
 	for _, tc := range tests {
-		tc := tc
 		suite.Run(tc.name, func() {
 			suite.SetupTest()
 			path = ibctesting.NewPath(suite.chainA, suite.chainB)
@@ -2457,7 +2442,6 @@ func (suite *KeeperTestSuite) TestAbortUpgrade() {
 	}
 
 	for _, tc := range tests {
-		tc := tc
 		suite.Run(tc.name, func() {
 			suite.SetupTest()
 			path = ibctesting.NewPath(suite.chainA, suite.chainB)
@@ -2592,7 +2576,6 @@ func (suite *KeeperTestSuite) TestCheckForUpgradeCompatibility() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			suite.SetupTest()
 
@@ -2644,7 +2627,6 @@ func (suite *KeeperTestSuite) TestChanUpgradeCrossingHelloWithHistoricalProofs()
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			suite.SetupTest()
 
@@ -2765,7 +2747,6 @@ func (suite *KeeperTestSuite) TestWriteErrorReceipt() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			suite.SetupTest()
 			path = ibctesting.NewPath(suite.chainA, suite.chainB)

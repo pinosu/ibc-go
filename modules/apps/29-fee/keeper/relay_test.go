@@ -30,7 +30,6 @@ func (suite *KeeperTestSuite) TestWriteAcknowledgementAsync() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			suite.SetupTest()
 
@@ -145,7 +144,6 @@ func (suite *KeeperTestSuite) TestGetAppVersion() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			suite.SetupTest()
 			suite.path.Setup()

@@ -38,6 +38,14 @@ issues:
     - text: 'Use of weak random number generator'
       linters:
         - gosec
+    - path: '_test\.go'
+      text: 'integer overflow conversion'
+      linters:
+        - gosec
+    - path: 'test'
+      text: 'integer overflow conversion'
+      linters:
+        - gosec
     - linters:
         - staticcheck
       text: "SA1019:" # silence errors on usage of deprecated funcs

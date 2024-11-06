@@ -54,7 +54,6 @@ func TestConnectionValidateBasic(t *testing.T) {
 	}
 
 	for i, tc := range testCases {
-		tc := tc
 
 		err := tc.connection.ValidateBasic()
 		if tc.expPass {
@@ -78,7 +77,6 @@ func TestCounterpartyValidateBasic(t *testing.T) {
 	}
 
 	for i, tc := range testCases {
-		tc := tc
 
 		err := tc.counterparty.ValidateBasic()
 		if tc.expPass {
@@ -108,7 +106,6 @@ func TestIdentifiedConnectionValidateBasic(t *testing.T) {
 	}
 
 	for i, tc := range testCases {
-		tc := tc
 
 		err := tc.connection.ValidateBasic()
 		if tc.expPass {

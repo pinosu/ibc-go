@@ -85,7 +85,6 @@ func TestMsgRegisterInterchainAccountValidateBasic(t *testing.T) {
 	}
 
 	for i, tc := range testCases {
-		i, tc := i, tc
 
 		msg = types.NewMsgRegisterInterchainAccount(
 			ibctesting.FirstConnectionID,
@@ -167,7 +166,6 @@ func TestMsgSendTxValidateBasic(t *testing.T) {
 	}
 
 	for i, tc := range testCases {
-		i, tc := i, tc
 
 		msgBankSend := &banktypes.MsgSend{
 			FromAddress: ibctesting.TestAccAddress,
@@ -247,7 +245,6 @@ func TestMsgUpdateParamsValidateBasic(t *testing.T) {
 	}
 
 	for i, tc := range testCases {
-		i, tc := i, tc
 
 		err := tc.msg.ValidateBasic()
 		if tc.expErr == nil {
@@ -270,7 +267,6 @@ func TestMsgUpdateParamsGetSigners(t *testing.T) {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 
 		msg := types.MsgUpdateParams{
 			Signer: tc.address.String(),

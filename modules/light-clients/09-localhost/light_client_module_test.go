@@ -230,8 +230,6 @@ func (suite *LocalhostTestSuite) TestVerifyMembership() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
-
 		suite.Run(tc.name, func() {
 			suite.SetupTest()
 
@@ -308,8 +306,6 @@ func (suite *LocalhostTestSuite) TestVerifyNonMembership() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
-
 		suite.Run(tc.name, func() {
 			suite.SetupTest()
 

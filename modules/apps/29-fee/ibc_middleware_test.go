@@ -77,8 +77,6 @@ func (suite *FeeTestSuite) TestOnChanOpenInit() {
 
 	for _, ordering := range []channeltypes.Order{channeltypes.UNORDERED, channeltypes.ORDERED} {
 		for _, tc := range testCases {
-			tc := tc
-
 			suite.Run(tc.name, func() {
 				// reset suite
 				suite.SetupTest()
@@ -169,8 +167,6 @@ func (suite *FeeTestSuite) TestOnChanOpenTry() {
 
 	for _, ordering := range []channeltypes.Order{channeltypes.UNORDERED, channeltypes.ORDERED} {
 		for _, tc := range testCases {
-			tc := tc
-
 			suite.Run(tc.name, func() {
 				// reset suite
 				suite.SetupTest()
@@ -263,7 +259,6 @@ func (suite *FeeTestSuite) TestOnChanOpenAck() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			suite.SetupTest()
 			suite.path.SetupConnections()
@@ -349,7 +344,6 @@ func (suite *FeeTestSuite) TestOnChanCloseInit() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			suite.SetupTest()
 			suite.path.Setup() // setup channel
@@ -435,8 +429,6 @@ func (suite *FeeTestSuite) TestOnChanCloseConfirm() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
-
 		suite.Run(tc.name, func() {
 			suite.SetupTest()
 			suite.path.Setup() // setup channel
@@ -520,7 +512,6 @@ func (suite *FeeTestSuite) TestOnRecvPacket() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			suite.SetupTest()
 			// setup pathAToC (chainA -> chainC) first in order to have different channel IDs for chainA & chainB
@@ -785,7 +776,6 @@ func (suite *FeeTestSuite) TestOnAcknowledgementPacket() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			suite.SetupTest()
 			suite.path.Setup()
@@ -996,7 +986,6 @@ func (suite *FeeTestSuite) TestOnTimeoutPacket() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			suite.SetupTest()
 			suite.path.Setup()
@@ -1095,7 +1084,6 @@ func (suite *FeeTestSuite) TestOnChanUpgradeInit() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			suite.SetupTest()
 
@@ -1205,7 +1193,6 @@ func (suite *FeeTestSuite) TestOnChanUpgradeTry() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			suite.SetupTest()
 
@@ -1302,7 +1289,6 @@ func (suite *FeeTestSuite) TestOnChanUpgradeAck() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			suite.SetupTest()
 
@@ -1404,7 +1390,6 @@ func (suite *FeeTestSuite) TestOnChanUpgradeOpen() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			suite.SetupTest()
 
@@ -1499,7 +1484,6 @@ func (suite *FeeTestSuite) TestGetAppVersion() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			suite.SetupTest()
 			suite.path.Setup()

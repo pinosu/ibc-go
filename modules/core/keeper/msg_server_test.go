@@ -150,8 +150,6 @@ func (suite *KeeperTestSuite) TestHandleRecvPacket() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
-
 		suite.Run(tc.name, func() {
 			suite.SetupTest() // reset
 			path = ibctesting.NewPath(suite.chainA, suite.chainB)
@@ -246,7 +244,6 @@ func (suite *KeeperTestSuite) TestRecoverClient() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			suite.SetupTest()
 
@@ -400,8 +397,6 @@ func (suite *KeeperTestSuite) TestHandleAcknowledgePacket() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
-
 		suite.Run(tc.name, func() {
 			suite.SetupTest() // reset
 			path = ibctesting.NewPath(suite.chainA, suite.chainB)
@@ -558,8 +553,6 @@ func (suite *KeeperTestSuite) TestHandleTimeoutPacket() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
-
 		suite.Run(tc.name, func() {
 			suite.SetupTest() // reset
 			path = ibctesting.NewPath(suite.chainA, suite.chainB)
@@ -736,8 +729,6 @@ func (suite *KeeperTestSuite) TestHandleTimeoutOnClosePacket() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
-
 		suite.Run(tc.name, func() {
 			suite.SetupTest() // reset
 			path = ibctesting.NewPath(suite.chainA, suite.chainB)
@@ -860,7 +851,7 @@ func (suite *KeeperTestSuite) TestUpgradeClient() {
 	}
 
 	for _, tc := range cases {
-		tc := tc
+
 		path = ibctesting.NewPath(suite.chainA, suite.chainB)
 		path.SetupClients()
 
@@ -1027,7 +1018,6 @@ func (suite *KeeperTestSuite) TestChannelUpgradeInit() {
 	}
 
 	for _, tc := range cases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			suite.SetupTest()
 
@@ -1175,7 +1165,6 @@ func (suite *KeeperTestSuite) TestChannelUpgradeTry() {
 	}
 
 	for _, tc := range cases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			suite.SetupTest()
 
@@ -1456,7 +1445,6 @@ func (suite *KeeperTestSuite) TestChannelUpgradeAck() {
 	}
 
 	for _, tc := range cases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			suite.SetupTest()
 
@@ -1740,7 +1728,6 @@ func (suite *KeeperTestSuite) TestChannelUpgradeConfirm() {
 	}
 
 	for _, tc := range cases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			suite.SetupTest()
 
@@ -1909,7 +1896,6 @@ func (suite *KeeperTestSuite) TestChannelUpgradeOpen() {
 	}
 
 	for _, tc := range cases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			suite.SetupTest()
 
@@ -2244,7 +2230,6 @@ func (suite *KeeperTestSuite) TestChannelUpgradeCancel() {
 	}
 
 	for _, tc := range cases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			suite.SetupTest()
 
@@ -2404,7 +2389,6 @@ func (suite *KeeperTestSuite) TestChannelUpgradeTimeout() {
 	}
 
 	for _, tc := range cases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			suite.SetupTest()
 
@@ -2478,7 +2462,6 @@ func (suite *KeeperTestSuite) TestIBCSoftwareUpgrade() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			path := ibctesting.NewPath(suite.chainA, suite.chainB)
 			path.SetupClients()
@@ -2561,7 +2544,6 @@ func (suite *KeeperTestSuite) TestUpdateClientParams() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			suite.SetupTest()
 			_, err := suite.chainA.App.GetIBCKeeper().UpdateClientParams(suite.chainA.GetContext(), tc.msg)
@@ -2612,7 +2594,6 @@ func (suite *KeeperTestSuite) TestUpdateConnectionParams() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			suite.SetupTest()
 			_, err := suite.chainA.App.GetIBCKeeper().UpdateConnectionParams(suite.chainA.GetContext(), tc.msg)
@@ -2663,7 +2644,6 @@ func (suite *KeeperTestSuite) TestUpdateChannelParams() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			suite.SetupTest()
 			resp, err := suite.chainA.App.GetIBCKeeper().UpdateChannelParams(suite.chainA.GetContext(), tc.msg)
@@ -2704,7 +2684,6 @@ func (suite *KeeperTestSuite) TestPruneAcknowledgements() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			suite.SetupTest()
 

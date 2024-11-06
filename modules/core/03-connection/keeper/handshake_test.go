@@ -57,7 +57,6 @@ func (suite *KeeperTestSuite) TestConnOpenInit() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.msg, func() {
 			suite.SetupTest()    // reset
 			emptyConnBID = false // must be explicitly changed
@@ -138,8 +137,6 @@ func (suite *KeeperTestSuite) TestConnOpenTry() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
-
 		suite.Run(tc.msg, func() {
 			suite.SetupTest()                        // reset
 			versions = types.GetCompatibleVersions() // may be changed in malleate
@@ -271,7 +268,6 @@ func (suite *KeeperTestSuite) TestConnOpenAck() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.msg, func() {
 			suite.SetupTest()                          // reset
 			version = types.GetCompatibleVersions()[0] // must be explicitly changed in malleate
@@ -338,8 +334,6 @@ func (suite *KeeperTestSuite) TestConnOpenConfirm() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
-
 		suite.Run(tc.msg, func() {
 			suite.SetupTest() // reset
 			path = ibctesting.NewPath(suite.chainA, suite.chainB)

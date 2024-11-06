@@ -241,7 +241,7 @@ func (suite *KeeperTestSuite) TestNewKeeper() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
+
 		suite.SetupTest()
 
 		suite.Run(tc.name, func() {
@@ -288,8 +288,6 @@ func (suite *KeeperTestSuite) TestInitializedPinnedCodes() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
-
 		suite.Run(tc.name, func() {
 			suite.SetupWasmWithMockVM()
 
@@ -400,7 +398,6 @@ func (suite *KeeperTestSuite) TestMigrateContract() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			suite.SetupWasmWithMockVM()
 			suite.storeWasmCode(wasmtesting.Code)
@@ -486,7 +483,6 @@ func (suite *KeeperTestSuite) TestGetChecksums() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			tc.malleate()
 
@@ -553,7 +549,6 @@ func (suite *KeeperTestSuite) TestHasChecksum() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			suite.SetupWasmWithMockVM()
 

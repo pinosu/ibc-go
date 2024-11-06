@@ -274,8 +274,6 @@ func (suite *KeeperTestSuite) TestOnChanOpenTry() {
 		}
 
 		for _, tc := range testCases {
-			tc := tc
-
 			suite.Run(tc.name, func() {
 				suite.SetupTest() // reset
 
@@ -361,8 +359,6 @@ func (suite *KeeperTestSuite) TestOnChanOpenConfirm() {
 
 	for _, ordering := range []channeltypes.Order{channeltypes.UNORDERED, channeltypes.ORDERED} {
 		for _, tc := range testCases {
-			tc := tc
-
 			suite.Run(tc.name, func() {
 				suite.SetupTest() // reset
 
@@ -558,8 +554,6 @@ func (suite *KeeperTestSuite) TestOnChanUpgradeTry() {
 
 	for _, ordering := range []channeltypes.Order{channeltypes.UNORDERED, channeltypes.ORDERED} {
 		for _, tc := range testCases {
-			tc := tc
-
 			suite.Run(tc.name, func() {
 				suite.SetupTest() // reset
 

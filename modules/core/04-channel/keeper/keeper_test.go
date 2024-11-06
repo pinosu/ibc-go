@@ -133,7 +133,6 @@ func (suite *KeeperTestSuite) TestGetAllChannelsWithPortPrefix() {
 	}
 
 	for _, tc := range tests {
-		tc := tc
 		suite.Run(tc.name, func() {
 			suite.SetupTest()
 
@@ -513,8 +512,6 @@ func (suite *KeeperTestSuite) TestParams() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
-
 		suite.Run(tc.name, func() {
 			suite.SetupTest() // reset
 			ctx := suite.chainA.GetContext()
@@ -856,7 +853,6 @@ func (suite *KeeperTestSuite) TestPruneAcknowledgements() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			suite.SetupTest() // reset
 

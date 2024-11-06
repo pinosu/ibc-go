@@ -215,8 +215,6 @@ func (suite *KeeperTestSuite) TestDistributeFee() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
-
 		suite.Run(tc.name, func() {
 			suite.SetupTest()  // reset
 			suite.path.Setup() // setup channel
@@ -360,8 +358,6 @@ func (suite *KeeperTestSuite) TestDistributePacketFeesOnTimeout() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
-
 		suite.Run(tc.name, func() {
 			suite.SetupTest()  // reset
 			suite.path.Setup() // setup channel
@@ -560,8 +556,6 @@ func (suite *KeeperTestSuite) TestRefundFeesOnChannelClosure() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
-
 		suite.Run(tc.name, func() {
 			suite.SetupTest()  // reset
 			suite.path.Setup() // setup channel

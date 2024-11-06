@@ -20,7 +20,6 @@ func TestValidateParams(t *testing.T) {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 
 		err := tc.params.Validate()
 		if tc.expPass {

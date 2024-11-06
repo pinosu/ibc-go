@@ -75,7 +75,6 @@ func (suite *KeeperTestSuite) TestChanOpenInit() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(fmt.Sprintf("Case %s", tc.msg), func() {
 			// run test for all types of ordering
 			for _, order := range []types.Order{types.UNORDERED, types.ORDERED} {
@@ -180,7 +179,6 @@ func (suite *KeeperTestSuite) TestChanOpenTry() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(fmt.Sprintf("Case %s", tc.msg), func() {
 			suite.SetupTest() // reset
 			heightDiff = 0    // must be explicitly changed in malleate
@@ -323,7 +321,6 @@ func (suite *KeeperTestSuite) TestChanOpenAck() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(fmt.Sprintf("Case %s", tc.msg), func() {
 			suite.SetupTest()          // reset
 			counterpartyChannelID = "" // must be explicitly changed in malleate
@@ -439,7 +436,6 @@ func (suite *KeeperTestSuite) TestChanOpenConfirm() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(fmt.Sprintf("Case %s", tc.msg), func() {
 			suite.SetupTest() // reset
 			heightDiff = 0    // must be explicitly changed
@@ -532,7 +528,6 @@ func (suite *KeeperTestSuite) TestChanCloseInit() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(fmt.Sprintf("Case %s", tc.msg), func() {
 			suite.SetupTest() // reset
 			path = ibctesting.NewPath(suite.chainA, suite.chainB)
@@ -646,7 +641,6 @@ func (suite *KeeperTestSuite) TestChanCloseConfirm() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(fmt.Sprintf("Case %s", tc.msg), func() {
 			suite.SetupTest()               // reset
 			heightDiff = 0                  // must explicitly be changed

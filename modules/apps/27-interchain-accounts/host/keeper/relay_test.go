@@ -503,8 +503,6 @@ func (suite *KeeperTestSuite) TestOnRecvPacket() {
 	for _, ordering := range testedOrderings {
 		for _, encoding := range testedEncodings {
 			for _, tc := range testCases {
-				tc := tc
-
 				suite.Run(tc.msg, func() {
 					suite.SetupTest() // reset
 
@@ -839,8 +837,6 @@ func (suite *KeeperTestSuite) TestJSONOnRecvPacket() {
 
 	for _, ordering := range []channeltypes.Order{channeltypes.UNORDERED, channeltypes.ORDERED} {
 		for _, tc := range testCases {
-			tc := tc
-
 			suite.Run(tc.msg, func() {
 				suite.SetupTest() // reset
 

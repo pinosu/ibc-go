@@ -44,7 +44,6 @@ func TestPacketValidateBasic(t *testing.T) {
 	}
 
 	for i, tc := range testCases {
-		tc := tc
 
 		err := tc.packet.ValidateBasic()
 		if tc.expPass {

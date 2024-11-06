@@ -70,8 +70,6 @@ func (suite *KeeperTestSuite) TestQueryIncentivizedPackets() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
-
 		suite.Run(tc.name, func() {
 			suite.SetupTest() // reset
 
@@ -125,8 +123,6 @@ func (suite *KeeperTestSuite) TestQueryIncentivizedPacket() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
-
 		suite.Run(tc.name, func() {
 			suite.SetupTest() // reset
 
@@ -265,8 +261,6 @@ func (suite *KeeperTestSuite) TestQueryIncentivizedPacketsForChannel() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
-
 		suite.Run(fmt.Sprintf("Case %s", tc.msg), func() {
 			suite.SetupTest() // reset
 
@@ -335,8 +329,6 @@ func (suite *KeeperTestSuite) TestQueryTotalRecvFees() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
-
 		suite.Run(tc.name, func() {
 			suite.SetupTest() // reset
 
@@ -403,8 +395,6 @@ func (suite *KeeperTestSuite) TestQueryTotalAckFees() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
-
 		suite.Run(tc.name, func() {
 			suite.SetupTest() // reset
 
@@ -471,8 +461,6 @@ func (suite *KeeperTestSuite) TestQueryTotalTimeoutFees() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
-
 		suite.Run(tc.name, func() {
 			suite.SetupTest() // reset
 
@@ -546,8 +534,6 @@ func (suite *KeeperTestSuite) TestQueryPayee() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
-
 		suite.Run(tc.name, func() {
 			suite.SetupTest() // reset
 
@@ -618,8 +604,6 @@ func (suite *KeeperTestSuite) TestQueryCounterpartyPayee() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
-
 		suite.Run(tc.name, func() {
 			suite.SetupTest() // reset
 
@@ -755,8 +739,6 @@ func (suite *KeeperTestSuite) TestQueryFeeEnabledChannels() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
-
 		suite.Run(tc.name, func() {
 			suite.SetupTest() // reset
 
@@ -851,8 +833,6 @@ func (suite *KeeperTestSuite) TestQueryFeeEnabledChannel() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
-
 		suite.Run(tc.name, func() {
 			suite.SetupTest() // reset
 			expEnabled = true

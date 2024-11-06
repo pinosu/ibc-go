@@ -46,7 +46,6 @@ func (suite *TypesTestSuite) TestIsValid() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			tc.malleate()
 
@@ -131,7 +130,6 @@ func (suite *TypesTestSuite) TestElapsed() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			elapsed := tc.timeout.Elapsed(height, timestamp)
 			suite.Require().Equal(tc.expElapsed, elapsed)
@@ -190,7 +188,6 @@ func (suite *TypesTestSuite) TestErrTimeoutElapsed() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			err := tc.timeout.ErrTimeoutElapsed(height, timestamp)
 			suite.Require().Equal(tc.expError.Error(), err.Error())
@@ -229,7 +226,6 @@ func (suite *TypesTestSuite) TestErrTimeoutNotReached() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			err := tc.timeout.ErrTimeoutNotReached(height, timestamp)
 			suite.Require().Equal(tc.expError.Error(), err.Error())

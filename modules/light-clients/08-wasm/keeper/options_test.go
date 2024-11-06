@@ -136,7 +136,7 @@ func (suite *KeeperTestSuite) TestNewKeeperWithOptions() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
+
 		suite.SetupTest()
 
 		suite.Run(tc.name, func() {

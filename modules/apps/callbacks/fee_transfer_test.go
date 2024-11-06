@@ -161,8 +161,6 @@ func (s *CallbacksTestSuite) TestIncentivizedTransferCallbacks() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
-
 		s.Run(tc.name, func() {
 			s.SetupFeeTransferTest()
 			transferMemo = ""
@@ -236,8 +234,6 @@ func (s *CallbacksTestSuite) TestIncentivizedTransferTimeoutCallbacks() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
-
 		s.Run(tc.name, func() {
 			s.SetupFeeTransferTest()
 

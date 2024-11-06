@@ -75,8 +75,6 @@ func (suite *KeeperTestSuite) TestQueryClientState() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
-
 		suite.Run(fmt.Sprintf("Case %s", tc.msg), func() {
 			suite.SetupTest() // reset
 
@@ -156,8 +154,6 @@ func (suite *KeeperTestSuite) TestQueryClientStates() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
-
 		suite.Run(fmt.Sprintf("Case %s", tc.msg), func() {
 			suite.SetupTest() // reset
 			tc.malleate()
@@ -269,8 +265,6 @@ func (suite *KeeperTestSuite) TestQueryConsensusState() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
-
 		suite.Run(fmt.Sprintf("Case %s", tc.msg), func() {
 			suite.SetupTest() // reset
 
@@ -373,8 +367,6 @@ func (suite *KeeperTestSuite) TestQueryConsensusStates() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
-
 		suite.Run(fmt.Sprintf("Case %s", tc.msg), func() {
 			suite.SetupTest() // reset
 
@@ -467,8 +459,6 @@ func (suite *KeeperTestSuite) TestQueryConsensusStateHeights() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
-
 		suite.Run(fmt.Sprintf("Case %s", tc.msg), func() {
 			suite.SetupTest() // reset
 
@@ -574,8 +564,6 @@ func (suite *KeeperTestSuite) TestQueryClientStatus() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
-
 		suite.Run(fmt.Sprintf("Case %s", tc.msg), func() {
 			suite.SetupTest() // reset
 
@@ -751,8 +739,6 @@ func (suite *KeeperTestSuite) TestQueryUpgradedConsensusStates() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
-
 		suite.Run(fmt.Sprintf("Case %s", tc.msg), func() {
 			suite.SetupTest() // reset
 
@@ -924,7 +910,6 @@ func (suite *KeeperTestSuite) TestQueryVerifyMembershipProof() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			suite.SetupTest() // reset
 

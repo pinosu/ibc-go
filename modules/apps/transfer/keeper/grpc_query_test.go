@@ -84,7 +84,6 @@ func (suite *KeeperTestSuite) TestQueryDenom() {
 
 	for _, tc := range testCases {
 		suite.Run(fmt.Sprintf("Case %s", tc.msg), func() {
-			tc := tc
 			suite.SetupTest() // reset
 
 			tc.malleate()
@@ -144,7 +143,6 @@ func (suite *KeeperTestSuite) TestQueryDenoms() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.msg, func() {
 			suite.SetupTest() // reset
 
@@ -210,7 +208,6 @@ func (suite *KeeperTestSuite) TestQueryDenomHash() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.msg, func() {
 			suite.SetupTest() // reset
 
@@ -287,7 +284,6 @@ func (suite *KeeperTestSuite) TestEscrowAddress() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(fmt.Sprintf("Case %s", tc.msg), func() {
 			suite.SetupTest() // reset
 			path = ibctesting.NewTransferPath(suite.chainA, suite.chainB)
@@ -380,7 +376,6 @@ func (suite *KeeperTestSuite) TestTotalEscrowForDenom() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(fmt.Sprintf("Case %s", tc.msg), func() {
 			suite.SetupTest() // reset
 

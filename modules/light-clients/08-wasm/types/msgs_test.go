@@ -46,7 +46,6 @@ func TestMsgStoreCodeValidateBasic(t *testing.T) {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 
 		err := tc.msg.ValidateBasic()
 		expPass := tc.expErr == nil
@@ -69,7 +68,6 @@ func (suite *TypesTestSuite) TestMsgStoreCodeGetSigners() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			suite.SetupTest()
 
@@ -146,7 +144,6 @@ func TestMsgMigrateContractValidateBasic(t *testing.T) {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 
 		err := tc.msg.ValidateBasic()
 		expPass := tc.expErr == nil
@@ -172,7 +169,6 @@ func (suite *TypesTestSuite) TestMsgMigrateContractGetSigners() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			suite.SetupTest()
 
@@ -223,7 +219,6 @@ func TestMsgRemoveChecksumValidateBasic(t *testing.T) {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 
 		err := tc.msg.ValidateBasic()
 
@@ -249,7 +244,6 @@ func (suite *TypesTestSuite) TestMsgRemoveChecksumGetSigners() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 		suite.Run(tc.name, func() {
 			suite.SetupTest()
 

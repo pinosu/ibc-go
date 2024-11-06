@@ -42,8 +42,6 @@ func (suite *KeeperTestSuite) TestTotalEscrowPerDenomInvariant() {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
-
 		suite.Run(tc.name, func() {
 			suite.SetupTest() // reset
 			path := ibctesting.NewTransferPath(suite.chainA, suite.chainB)

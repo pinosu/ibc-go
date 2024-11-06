@@ -39,7 +39,6 @@ func TestParseKeyPayee(t *testing.T) {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 
 		address, channelID, err := types.ParseKeyPayeeAddress(tc.key)
 
@@ -92,8 +91,6 @@ func TestParseKeyFeeEnabled(t *testing.T) {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
-
 		t.Run(tc.name, func(t *testing.T) {
 			portID, channelID, err := types.ParseKeyFeeEnabled(tc.key)
 
@@ -134,7 +131,6 @@ func TestParseKeyFeesInEscrow(t *testing.T) {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 
 		packetID, err := types.ParseKeyFeesInEscrow(tc.key)
 
@@ -171,7 +167,6 @@ func TestParseKeyForwardRelayerAddress(t *testing.T) {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 
 		packetID, err := types.ParseKeyRelayerAddressForAsyncAck(tc.key)
 
@@ -205,7 +200,6 @@ func TestParseKeyCounterpartyPayee(t *testing.T) {
 	}
 
 	for _, tc := range testCases {
-		tc := tc
 
 		address, channelID, err := types.ParseKeyCounterpartyPayee(tc.key)
 
