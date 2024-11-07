@@ -169,6 +169,9 @@ func (k Keeper) WriteAcknowledgement(
 	sequence uint64,
 	ack types.Acknowledgement,
 ) error {
+	if len(ack.AcknowledgementResults) == 0 {
+		return errorsmod.Wrap(types.ErrInvalidAcknowledgement, "acknowledgement results cannot be empty")
+	}
 	// Lookup channel associated with destination channel ID and ensure
 	// that the packet was indeed sent by our counterparty by verifying
 	// packet sender is our channel's counterparty channel id.
@@ -178,14 +181,14 @@ func (k Keeper) WriteAcknowledgement(
 	}
 
 	if channel.CounterpartyChannelId != sourceChannel {
-		return errorsmod.Wrapf(types.ErrInvalidChannelIdentifier, "counterparty channel id (%s) does not match packet source channel id (%s)", channel.CounterpartyChannelId, packet.SourceChannel)
+		return errorsmod.Wrapf(types.ErrInvalidChannelIdentifier, "counterparty channel id (%s) does not match packet source channel id (%s)", channel.CounterpartyChannelId, sourceChannel)
 	}
 
 	// NOTE: IBC app modules might have written the acknowledgement synchronously on
 	// the OnRecvPacket callback so we need to check if the acknowledgement is already
 	// set on the store and return an error if so.
 	if k.HasPacketAcknowledgement(ctx, destinationChannel, sequence) {
-		return errorsmod.Wrapf(types.ErrAcknowledgementExists, "acknowledgement for channel %s, sequence %d already exists", packet.DestinationChannel, packet.Sequence)
+		return errorsmod.Wrapf(types.ErrAcknowledgementExists, "acknowledgement for channel %s, sequence %d already exists", destinationChannel, sequence)
 	}
 
 	if _, found := k.GetPacketReceipt(ctx, destinationChannel, sequence); !found {

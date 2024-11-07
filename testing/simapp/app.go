@@ -488,7 +488,7 @@ func NewSimApp(
 	app.MockModuleV2B = mockV2B
 
 	// register the transfer v2 module.
-	app.TransferKeeperV2 = ibctransferkeeperv2.NewKeeper(app.TransferKeeper, app.IBCKeeper.ChannelKeeperV2)
+	app.TransferKeeperV2 = ibctransferkeeperv2.NewKeeper(app.TransferKeeper, app.IBCKeeper.ChannelKeeperV2, app.MsgServiceRouter())
 	ibcRouterV2.AddRoute(ibctransfertypes.ModuleName, transferv2.NewIBCModule(app.TransferKeeperV2))
 
 	// Seal the IBC Router
