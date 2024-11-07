@@ -96,9 +96,9 @@ func (k Keeper) revertForwardedPacket(ctx context.Context, forwardedPacket chann
 	return nil
 }
 
-// getReceiverFromPacketData returns either the sender specified in the packet data or the forwarding address
+// GetReceiverFromPacketData returns either the sender specified in the packet data or the forwarding address
 // if there are still hops left to perform.
-func (k Keeper) getReceiverFromPacketData(data types.FungibleTokenPacketDataV2) (sdk.AccAddress, error) {
+func (k Keeper) GetReceiverFromPacketData(data types.FungibleTokenPacketDataV2) (sdk.AccAddress, error) {
 	if data.HasForwarding() {
 		// since data.Receiver can potentially be a non-CosmosSDK AccAddress, we return early if the packet should be forwarded
 		return k.AuthKeeper.GetModuleAddress(types.ModuleName), nil

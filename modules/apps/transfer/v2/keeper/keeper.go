@@ -96,9 +96,9 @@ func (k *Keeper) OnRecvPacket(ctx context.Context, sourceChannel, destChannel st
 		return types.ErrReceiveDisabled
 	}
 
-	receiver, err := sdk.AccAddressFromBech32(data.Receiver)
+	receiver, err := k.GetReceiverFromPacketData(data)
 	if err != nil {
-		return errorsmod.Wrapf(ibcerrors.ErrInvalidAddress, "failed to decode receiver address %s: %v", data.Receiver, err)
+		return err
 	}
 
 	if k.IsBlockedAddr(receiver) {
@@ -174,14 +174,12 @@ func (k *Keeper) OnRecvPacket(ctx context.Context, sourceChannel, destChannel st
 		}
 	}
 
-	// TODO: forwarding
-	// if data.HasForwarding() {
-	//	// we are now sending from the forward escrow address to the final receiver address.
-	// TODO: inside this version of the function, we should fetch the packet that was stored in IBC core in order to set it for forwarding.
-	//	if err := k.forwardPacket(ctx, data, packet, receivedCoins); err != nil {
-	//		return err
-	//	}
-	//}
+	if data.HasForwarding() {
+		// we are now sending from the forward escrow address to the final receiver address.
+		if err := k.forwardPacket(ctx, data, payload, receivedCoins); err != nil {
+			return err
+		}
+	}
 
 	// TODO: telemetry
 	// telemetry.ReportOnRecvPacket(packet, data.Tokens)
@@ -192,7 +190,7 @@ func (k *Keeper) OnRecvPacket(ctx context.Context, sourceChannel, destChannel st
 
 // TODO move to a different file
 // forwardPacket forwards a fungible FungibleTokenPacketDataV2 to the next hop in the forwarding path.
-func (k Keeper) forwardPacket(ctx context.Context, data types.FungibleTokenPacketDataV2, payload channeltypesv2.Payload, timeoutTimestamp uint64, receivedCoins sdk.Coins) error {
+func (k Keeper) forwardPacket(ctx context.Context, data types.FungibleTokenPacketDataV2, payload channeltypesv2.Payload, receivedCoins sdk.Coins) error {
 	newForwardingPacketData := types.NewForwardingPacketData(data.Forwarding.DestinationMemo)
 	if len(data.Forwarding.Hops) > 1 {
 		// remove the first hop since we are going to send to the first hop now and we want to propagate the rest of the hops to the receiver
@@ -207,7 +205,16 @@ func (k Keeper) forwardPacket(ctx context.Context, data types.FungibleTokenPacke
 	// sending from module account (used as a temporary forward escrow) to the original receiver address.
 	sender := k.AuthKeeper.GetModuleAddress(types.ModuleName)
 
-	newPacketData := types.NewFungibleTokenPacketDataV2(data.Tokens, data.Sender, data.Receiver, memo, newForwardingPacketData)
+	var receivedTokens []types.Token
+	for _, c := range receivedCoins {
+		token, err := k.TokenFromCoin(sdk.UnwrapSDKContext(ctx), c)
+		if err != nil {
+			return err
+		}
+		receivedTokens = append(receivedTokens, token)
+	}
+
+	newPacketData := types.NewFungibleTokenPacketDataV2(receivedTokens, data.Sender, data.Receiver, memo, newForwardingPacketData)
 
 	pdBz, err := newPacketData.Marshal()
 	if err != nil {
@@ -217,7 +224,7 @@ func (k Keeper) forwardPacket(ctx context.Context, data types.FungibleTokenPacke
 
 	msg := channeltypesv2.NewMsgSendPacket(
 		data.Forwarding.Hops[0].ChannelId,
-		timeoutTimestamp,
+		data.Forwarding.ForwardingPacketTimeout,
 		sender.String(),
 		payload,
 	)
@@ -228,7 +235,9 @@ func (k Keeper) forwardPacket(ctx context.Context, data types.FungibleTokenPacke
 		return err
 	}
 	_ = resp
-	// k.setForwardedPacketSequence(ctx, data.Forwarding.Hops[0].PortId, data.Forwarding.Hops[0].ChannelId, resp.Sequence)
+
+	// TODO: store sequence and destinationChannel
+	//k.setForwardedPacketSequence(ctx, data.Forwarding.Hops[0].PortId, data.Forwarding.Hops[0].ChannelId, resp.Sequence)
 	return nil
 }
 
