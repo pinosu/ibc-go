@@ -5,9 +5,10 @@ import (
 	"encoding/json"
 	"testing"
 
+	"github.com/stretchr/testify/require"
+
 	transfertypes "github.com/cosmos/ibc-go/v9/modules/apps/transfer/types"
 	"github.com/cosmos/ibc-go/v9/modules/core/04-channel/v2/types"
-	"github.com/stretchr/testify/require"
 )
 
 func TestCommitPacket(t *testing.T) {
